@@ -7,33 +7,40 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: black;
+      background: radial-gradient(circle at center, #020617, #000);
       color: white;
       text-align: center;
       overflow: hidden;
+      animation: fadeIn 1.5s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     h1 {
-      font-size: 60px;
+      font-size: 55px;
       margin-top: 100px;
-      animation: glow 1s infinite alternate;
+      animation: glow 2s infinite alternate;
     }
 
     @keyframes glow {
       from { text-shadow: 0 0 10px #3b82f6; }
-      to { text-shadow: 0 0 30px #60a5fa; }
+      to { text-shadow: 0 0 25px #60a5fa; }
     }
 
     .subtitle {
-      font-size: 22px;
+      font-size: 20px;
       color: #94a3b8;
-      animation: move 3s infinite;
+      margin-bottom: 40px;
+      animation: floatText 4s ease-in-out infinite;
     }
 
-    @keyframes move {
-      0% { transform: translateX(-20px); }
-      50% { transform: translateX(20px); }
-      100% { transform: translateX(-20px); }
+    @keyframes floatText {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(10px); }
+      100% { transform: translateY(0px); }
     }
 
     .button {
@@ -44,39 +51,39 @@
       border-radius: 12px;
       text-decoration: none;
       color: white;
-      transition: 0.2s;
+      transition: 0.25s;
     }
 
     .discord {
       background: #5865F2;
-      box-shadow: 0 0 20px #5865F2;
+      box-shadow: 0 0 15px #5865F2;
     }
 
     .roblox {
       background: #ef4444;
-      box-shadow: 0 0 20px #ef4444;
+      box-shadow: 0 0 15px #ef4444;
     }
 
     .button:hover {
-      transform: scale(1.2);
-      box-shadow: 0 0 50px white;
+      transform: scale(1.1);
+      box-shadow: 0 0 30px white;
     }
 
-    .flash {
+    /* Smooth background glow */
+    .bg-glow {
       position: fixed;
-      width: 100%;
-      height: 100%;
-      background: white;
-      opacity: 0;
-      pointer-events: none;
-      animation: flashBeat 1.2s infinite;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(59,130,246,0.1), transparent);
+      animation: moveGlow 15s linear infinite;
     }
 
-    @keyframes flashBeat {
-      0%, 90%, 100% { opacity: 0; }
-      95% { opacity: 0.15; }
+    @keyframes moveGlow {
+      from { transform: translate(-50%, -50%); }
+      to { transform: translate(50%, 50%); }
     }
 
+    /* particles */
     .particle {
       position: absolute;
       width: 6px;
@@ -99,10 +106,10 @@
 
 <body onclick="spawnParticles(event)">
 
-<div class="flash"></div>
+<div class="bg-glow"></div>
 
 <h1>Blue & White Troll Tower 👑</h1>
-<p class="subtitle">TRILLIUM MODE ⚡</p>
+<p class="subtitle">Smooth TRILLIUM Vibes ⚡</p>
 
 <a class="button roblox" href="https://www.roblox.com/games/70738198047390/blue-and-white-troll-tower#!/store" target="_blank">
   🎮 Play Game
@@ -116,7 +123,6 @@
 
 <button class="music" onclick="playMusic()">🎧 Start Music</button>
 
-<!-- WORKING MUSIC -->
 <audio id="music">
   <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
 </audio>
@@ -128,15 +134,16 @@ function playMusic() {
   music.play();
 }
 
+/* click particles */
 function spawnParticles(e) {
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 10; i++) {
     let p = document.createElement("div");
     p.className = "particle";
     p.style.left = e.clientX + "px";
     p.style.top = e.clientY + "px";
 
-    let x = (Math.random() - 0.5) * 200;
-    let y = (Math.random() - 0.5) * 200;
+    let x = (Math.random() - 0.5) * 150;
+    let y = (Math.random() - 0.5) * 150;
 
     document.body.appendChild(p);
 
@@ -144,10 +151,10 @@ function spawnParticles(e) {
       { transform: "translate(0,0)", opacity: 1 },
       { transform: `translate(${x}px, ${y}px)`, opacity: 0 }
     ], {
-      duration: 800
+      duration: 700
     });
 
-    setTimeout(() => p.remove(), 800);
+    setTimeout(() => p.remove(), 700);
   }
 }
 </script>
