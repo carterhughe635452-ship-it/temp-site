@@ -1,99 +1,89 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Blue & White Troll Tower</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: linear-gradient(180deg, #0a0f1f, #111827);
+  color: white;
+  padding: 40px 20px;
+}
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: linear-gradient(180deg, #0a0f1f, #111827);
-      color: white;
-      padding-top: 80px;
-    }
+/* LOGO */
+.logo {
+  width: 260px;
+  max-width: 80%;
+  border-radius: 12px;
+  margin-bottom: 20px;
 
-    h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
+  animation: float 4s ease-in-out infinite,
+             glow 2.5s infinite alternate;
+}
 
-    p {
-      font-size: 20px;
-      color: #9ca3af;
-      margin-bottom: 30px;
-    }
+/* TEXT */
+h1 {
+  font-size: 42px;
+}
 
-    /* LOGO */
-    .logo {
-      width: 260px;
-      border-radius: 12px;
-      margin-bottom: 25px;
+p {
+  font-size: 18px;
+  color: #9ca3af;
+}
 
-      animation: float 4s ease-in-out infinite,
-                 glow 2.5s infinite alternate;
-    }
+/* BUTTONS */
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
 
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-12px); }
-      100% { transform: translateY(0px); }
-    }
+.btn {
+  padding: 14px 24px;
+  font-size: 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  transition: 0.2s;
+}
 
-    @keyframes glow {
-      from { filter: drop-shadow(0 0 10px #3b82f6); }
-      to { filter: drop-shadow(0 0 25px #60a5fa); }
-    }
+.btn:hover {
+  transform: scale(1.05);
+}
 
-    /* BUTTONS */
-    .buttons {
-      margin-top: 20px;
-    }
+.discord {
+  background: #5865F2;
+}
 
-    .btn {
-      display: inline-block;
-      margin: 10px;
-      padding: 14px 28px;
-      font-size: 18px;
-      border-radius: 10px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      color: white;
-      transition: all 0.2s ease;
-    }
+.roblox {
+  background: #e11d48;
+}
 
-    .btn:hover {
-      transform: scale(1.08);
-    }
+/* ANIMATIONS */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
 
-    .discord {
-      background: #5865F2;
-    }
+@keyframes glow {
+  from { filter: drop-shadow(0 0 10px #3b82f6); }
+  to { filter: drop-shadow(0 0 25px #60a5fa); }
+}
 
-    .roblox {
-      background: #e11d48;
-    }
-  </style>
-</head>
+/* 📱 MOBILE */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 28px;
+  }
 
-<body>
+  p {
+    font-size: 16px;
+  }
 
-  <!-- YOUR LOGO -->
-  <img src="logo.png" class="logo">
-
-  <h1>Blue & White Troll Tower</h1>
-  <p>Welcome to the official site 😈</p>
-
-  <div class="buttons">
-    <a href="https://discord.gg/gQgDtUe6UF" target="_blank" class="btn discord">
-      Join Discord
-    </a>
-
-    <a href="https://www.roblox.com/games/70738198047390/blue-and-white-troll-tower#!/store" target="_blank" class="btn roblox">
-      Play Game
-    </a>
-  </div>
-
-</body>
-</html>
+  .btn {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+</style>
