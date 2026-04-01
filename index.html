@@ -2,69 +2,67 @@
 <html>
 <head>
   <title>Blue & White Troll Tower</title>
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: radial-gradient(circle at center, #020617, #000);
+      background: black;
       color: white;
       text-align: center;
       padding: 40px 20px;
       overflow: hidden;
     }
 
-    /* background glow */
+    /* background glow pulsing */
     .bg {
       position: fixed;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(59,130,246,0.12), transparent);
-      animation: move 20s linear infinite;
+      background: radial-gradient(circle, rgba(59,130,246,0.2), transparent);
+      animation: pulse 1s infinite;
       z-index: -1;
     }
 
-    @keyframes move {
-      from { transform: translate(-50%, -50%); }
-      to { transform: translate(50%, 50%); }
+    @keyframes pulse {
+      0% { opacity: 0.2; }
+      50% { opacity: 0.5; }
+      100% { opacity: 0.2; }
     }
 
-    /* logo */
+    /* LOGO */
     .logo {
       width: 260px;
       max-width: 80%;
       border-radius: 12px;
       margin-bottom: 20px;
-
-      animation: float 4s ease-in-out infinite,
-                 glow 2s infinite alternate;
+      animation: bounce 1s infinite;
     }
 
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
-    }
-
-    @keyframes glow {
-      from { filter: drop-shadow(0 0 10px #3b82f6); }
-      to { filter: drop-shadow(0 0 25px #60a5fa); }
+    @keyframes bounce {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
     }
 
     h1 {
       font-size: 40px;
-      margin: 10px 0;
+      animation: textPulse 1s infinite;
+    }
+
+    @keyframes textPulse {
+      0% { text-shadow: 0 0 5px #3b82f6; }
+      50% { text-shadow: 0 0 20px #60a5fa; }
+      100% { text-shadow: 0 0 5px #3b82f6; }
     }
 
     p {
-      font-size: 18px;
       color: #9ca3af;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
 
-    /* buttons */
+    /* BUTTONS */
     .buttons {
       display: flex;
       flex-wrap: wrap;
@@ -78,27 +76,25 @@
       border-radius: 10px;
       text-decoration: none;
       color: white;
-      transition: 0.25s;
+      transition: 0.2s;
     }
 
     .btn:hover {
       transform: scale(1.1);
-      box-shadow: 0 0 25px white;
     }
 
     .discord {
-      background: linear-gradient(45deg, #5865F2, #3b82f6);
+      background: #5865F2;
     }
 
     .roblox {
-      background: linear-gradient(45deg, #ef4444, #dc2626);
+      background: #ef4444;
     }
 
     /* music button */
     .music {
       margin-top: 25px;
       padding: 10px 20px;
-      font-size: 16px;
       border-radius: 8px;
       border: none;
       cursor: pointer;
@@ -117,12 +113,7 @@
     /* mobile */
     @media (max-width: 600px) {
       h1 { font-size: 28px; }
-      p { font-size: 16px; }
-
-      .btn {
-        width: 100%;
-        max-width: 250px;
-      }
+      .btn { width: 100%; max-width: 250px; }
     }
   </style>
 </head>
@@ -146,15 +137,8 @@
   </a>
 </div>
 
-<!-- 🎧 MUSIC -->
-<iframe id="musicFrame"
-  width="0"
-  height="0"
-  src=""
-  frameborder="0"
-  allow="autoplay">
-</iframe>
-
+<!-- MUSIC -->
+<iframe id="musicFrame" width="0" height="0" src="" allow="autoplay"></iframe>
 <button class="music" onclick="startMusic()">🎧 Start Music</button>
 
 <script>
