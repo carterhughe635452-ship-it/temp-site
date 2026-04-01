@@ -1,89 +1,186 @@
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background: linear-gradient(180deg, #0a0f1f, #111827);
-  color: white;
-  padding: 40px 20px;
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blue & White Troll Tower</title>
+
+  <!-- MOBILE SUPPORT -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at center, #020617, #000);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      overflow: hidden;
+    }
+
+    /* BACKGROUND GLOW */
+    .bg {
+      position: fixed;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(59,130,246,0.15), transparent);
+      animation: move 20s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes move {
+      from { transform: translate(-50%, -50%); }
+      to { transform: translate(50%, 50%); }
+    }
+
+    /* LOGO */
+    .logo {
+      width: 260px;
+      max-width: 80%;
+      border-radius: 12px;
+      margin-bottom: 20px;
+
+      animation: float 4s ease-in-out infinite,
+                 glow 2s infinite alternate;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 10px #3b82f6); }
+      to { filter: drop-shadow(0 0 25px #60a5fa); }
+    }
+
+    h1 {
+      font-size: 42px;
+      margin: 10px 0;
+    }
+
+    p {
+      font-size: 18px;
+      color: #9ca3af;
+      margin-bottom: 25px;
+    }
+
+    /* BUTTONS */
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 14px 26px;
+      font-size: 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: white;
+      transition: 0.25s;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px white;
+    }
+
+    .discord {
+      background: linear-gradient(45deg, #5865F2, #3b82f6);
+    }
+
+    .roblox {
+      background: linear-gradient(45deg, #ef4444, #dc2626);
+    }
+
+    /* MUSIC BUTTON */
+    .music {
+      margin-top: 25px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* PARTICLES */
+    .particle {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: white;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      h1 { font-size: 28px; }
+      p { font-size: 16px; }
+
+      .btn {
+        width: 100%;
+        max-width: 250px;
+      }
+    }
+  </style>
+</head>
+
+<body onclick="spawnParticles(event)">
+
+<div class="bg"></div>
+
+<img src="logo.png" class="logo">
+
+<h1>Blue & White Troll Tower</h1>
+<p>TRILLIUM x HARTTEK ENERGY ⚡</p>
+
+<div class="buttons">
+  <a href="https://www.roblox.com/games/70738198047390/blue-and-white-troll-tower#!/store" target="_blank" class="btn roblox">
+    🎮 Play Game
+  </a>
+
+  <a href="https://discord.gg/gQgDtUe6UF" target="_blank" class="btn discord">
+    💬 Join Discord
+  </a>
+</div>
+
+<button class="music" onclick="playMusic()">🎧 Start Music</button>
+
+<audio id="music">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+<script>
+function playMusic() {
+  let m = document.getElementById("music");
+  m.volume = 0.5;
+  m.play();
 }
 
-/* LOGO */
-.logo {
-  width: 260px;
-  max-width: 80%;
-  border-radius: 12px;
-  margin-bottom: 20px;
+function spawnParticles(e) {
+  for (let i = 0; i < 10; i++) {
+    let p = document.createElement("div");
+    p.className = "particle";
+    p.style.left = e.clientX + "px";
+    p.style.top = e.clientY + "px";
 
-  animation: float 4s ease-in-out infinite,
-             glow 2.5s infinite alternate;
-}
+    let x = (Math.random() - 0.5) * 120;
+    let y = (Math.random() - 0.5) * 120;
 
-/* TEXT */
-h1 {
-  font-size: 42px;
-}
+    document.body.appendChild(p);
 
-p {
-  font-size: 18px;
-  color: #9ca3af;
-}
+    p.animate([
+      { transform: "translate(0,0)", opacity: 1 },
+      { transform: `translate(${x}px, ${y}px)`, opacity: 0 }
+    ], { duration: 600 });
 
-/* BUTTONS */
-.buttons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.btn {
-  padding: 14px 24px;
-  font-size: 18px;
-  border-radius: 10px;
-  text-decoration: none;
-  color: white;
-  transition: 0.2s;
-}
-
-.btn:hover {
-  transform: scale(1.05);
-}
-
-.discord {
-  background: #5865F2;
-}
-
-.roblox {
-  background: #e11d48;
-}
-
-/* ANIMATIONS */
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0px); }
-}
-
-@keyframes glow {
-  from { filter: drop-shadow(0 0 10px #3b82f6); }
-  to { filter: drop-shadow(0 0 25px #60a5fa); }
-}
-
-/* 📱 MOBILE */
-@media (max-width: 600px) {
-  h1 {
-    font-size: 28px;
+    setTimeout(() => p.remove(), 600);
   }
-
-  p {
-    font-size: 16px;
-  }
-
-  .btn {
-    width: 100%;
-    max-width: 250px;
-  }
 }
-</style>
+</script>
+
+</body>
+</html>
